@@ -1,0 +1,5 @@
+install.packages("xlsx")
+library(xlsx)
+ageheight <- read.xlsx("D:\\KHALSA-Management-college(MCA)\\ADBMS\\practicals\\Practical-7\\ageandheight.xlsx",sheetName = "sheet2")
+result <- lm(height~age+no_of_brothers,data=ageheight)
+summary(result)

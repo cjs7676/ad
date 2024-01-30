@@ -1,0 +1,20 @@
+create table student(s_id int, s_name varchar(20), dob date)partition by range(year(dob))(partition p0 values less than (1990),partition p1 values less than(1995),partition p2 values less than (2000));
+
+insert into student values(2,'ajay','1998-10-20'),(3,'sumit','1989-9-14'),(4,'vijay','1988-04-21'),(5,'joshna','1999-04-24'),(6,'ankita','1994-04-23');
+
+
+create table stores(shop_id int, s_name varchar(20),st_number int,email_id varchar(40),store_id int) partition by list(store_id)
+(partition peast values in(104,106,109),
+partition pwest values in(103,105,107),
+partition pnorth values in(101,102,108),
+partition psouth values in(110,111,112));
+
+
+e.g of inerting rows
+insert into stores values(1,'pune_stores',2937363,'pn@gmail.com',104);
+
+e.g of selecting partition
+select * from student partition(p1);
+
+e.g to select number of rows in each partition.
+select partition_name,table_rows from information_schema.partitions where table_name='student';

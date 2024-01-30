@@ -1,0 +1,5 @@
+install.packages("xlsx")
+library(xlsx)
+ageheight <- read.xlsx("D:\\ADBMS\\practicals\\Practical-7\\ageandheight.xlsx",sheetName = "sheet1")
+result <- lm(height~age,data=ageheight)
+summary(result)

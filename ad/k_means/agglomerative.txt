@@ -1,0 +1,20 @@
+install.packages("ggplot2")
+install.packages("cluster")
+
+library(ggplot2)
+library(cluster)
+
+set.seed(123)
+data <- data.frame(
+  x = rnorm(100, mean = 0),
+  y = rnorm(100, mean = 0)
+)
+
+hclust_result <- hclust(dist(data))
+
+cut_tree_result <- cutree(hclust_result, k=3)
+
+data$cluster <- as.factor(cut_tree_result)
+
+ggplot(data, aes(x, y, color = cluster))+
+  geom_point()
